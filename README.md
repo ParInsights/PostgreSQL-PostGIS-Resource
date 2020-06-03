@@ -210,19 +210,19 @@ psql is the interactive unix command line tool for interacting with Postgres/Pos
 
 	```sql
 	COPY noise.locations (name, complaint, descript, boro, lat, lon)
-	FROM '/Users/chrislhenrick/tutorials/postgresql/data/noise.csv' WITH CSV HEADER;
+	FROM '/Users/parinppatel/tutorials/postgresql/data/noise.csv' WITH CSV HEADER;
 	```
 - import a CSV file "AS IS" using csvkit's `csvsql` (requires python, pip, csvkit, psycopg2):
 
 	```
-	csvsql --db postgresql:///nyc_pluto --insert 2012_DHCR_Bldg.csv
+	csvsql --db postgresql:///nyc_post --insert 2012_DHCR_Bldg.csv
 	```
 
 ### Exporting Data
 - export data as a CSV with Headers using COPY:
 
 	```sql
-	COPY dob_jobs_2014 to '/Users/chrislhenrick/development/nyc_dob_jobs/data/2014/dob_jobs_2014.csv' DELIMITER ',' CSV Header;
+	COPY dob_jobs_2014 to '/Users/parinppatel/development/nyc_dob_jobs/data/2014/dob_jobs_2014.csv' DELIMITER ',' CSV Header;
 	```
 
 - to the current workspace without saving to a file:
@@ -589,12 +589,12 @@ To import an OpenStreetMap extract in PBF format do:
 `osm2pgsql -H localhost --hstore-all -d nyc_from_osm ~/Downloads/newyorkcity.osm.pbf`
 
 #### Using ogr2ogr
-Example importing a GeoJSON file into a database called nyc_pluto:  
+Example importing a GeoJSON file into a database called nyc_post:  
 
 ```bash
 ogr2ogr -f PostgreSQL \
-PG:"host='localhost' user='chrislhenrick' port='5432' \
-dbname='nyc_pluto' password=''" \
+PG:"host='localhost' user='parinppatel' port='5432' \
+dbname='nyc_post' password=''" \
 bk_map_pluto_4326.json -nln bk_pluto
 ```
 
@@ -640,10 +640,3 @@ FROM dob_jobs_2014 WHERE geom IS NOT NULL"
 
 - **note:** you must select the column containing the geometry (usually `geom` or `wkb_geometry`) for your exported layer to have geometry data.
 
-## Other Methods of Interacting With Postgres/PostGIS
-to do...
-### PGAdmin
-
-### Python
-
-### Node JS
